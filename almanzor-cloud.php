@@ -25,6 +25,7 @@ define('ALMANZOR_CLOUD_PLUGIN_FILE', __FILE__);
 require_once __DIR__ . '/includes/class-almanzor-cloud-settings.php';
 require_once __DIR__ . '/includes/class-almanzor-cloud-embed.php';
 require_once __DIR__ . '/includes/class-almanzor-cloud-ingest.php';
+require_once __DIR__ . '/includes/class-almanzor-cloud-connection.php';
 
 add_action(
     'init',
@@ -43,5 +44,6 @@ add_action(
         Almanzor_Cloud_Settings::init();
         Almanzor_Cloud_Embed::init();
         Almanzor_Cloud_Ingest::init();
+        Almanzor_Cloud_Connection::init();
     }
 );
