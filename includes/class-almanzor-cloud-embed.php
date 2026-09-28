@@ -20,8 +20,8 @@ final class Almanzor_Cloud_Embed {
         }
 
         $settings = Almanzor_Cloud_Settings::get_settings();
-        $agent_id = trim($settings['agent_id'] ?? '');
-        if ($agent_id === '') {
+        $agent_slug = trim($settings['agent_slug'] ?? '');
+        if ($agent_slug === '') {
             return;
         }
 
@@ -31,9 +31,9 @@ final class Almanzor_Cloud_Embed {
         }
 
         printf(
-            '<script src="%1$s/embed.js" async data-agent="%2$s" data-platform-url="%1$s"></script>' . "\n",
-            esc_url($platform),
-            esc_attr($agent_id)
+            '<script src="%1$s/embed.js" async defer data-agent-id="%2$s"></script>' . "\n",
+            esc_url($platform . '/embed.js'),
+            esc_attr($agent_slug)
         );
     }
 }

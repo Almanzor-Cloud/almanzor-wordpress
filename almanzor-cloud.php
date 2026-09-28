@@ -3,7 +3,7 @@
  * Plugin Name: Almanzor Cloud
  * Plugin URI: https://github.com/Almanzor-Cloud/almanzor-wordpress
  * Description: Official WordPress integration for Almanzor Cloud — embed your AI assistant and sync public site content.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Requires at least: 6.0
  * Requires PHP: 8.0
  * Author: Almanzor Cloud
@@ -19,7 +19,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('ALMANZOR_CLOUD_VERSION', '1.0.0');
+define('ALMANZOR_CLOUD_VERSION', '1.0.1');
 define('ALMANZOR_CLOUD_PLUGIN_FILE', __FILE__);
 
 require_once __DIR__ . '/includes/class-almanzor-cloud-settings.php';

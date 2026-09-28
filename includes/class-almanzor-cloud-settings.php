@@ -27,6 +27,7 @@ final class Almanzor_Cloud_Settings {
         $defaults = [
             'api_key' => '',
             'agent_id' => '',
+            'agent_slug' => '',
             'platform_url' => self::DEFAULT_WIDGET_URL,
             'portal_api_url' => self::PORTAL_URL,
         ];
@@ -78,6 +79,7 @@ final class Almanzor_Cloud_Settings {
         return [
             'api_key' => sanitize_text_field($input['api_key'] ?? ''),
             'agent_id' => sanitize_text_field($input['agent_id'] ?? ''),
+            'agent_slug' => sanitize_text_field($input['agent_slug'] ?? ''),
             'platform_url' => $platform,
             'portal_api_url' => $portal,
         ];
@@ -165,7 +167,25 @@ final class Almanzor_Cloud_Settings {
                                 required
                             />
                             <p class="description">
-                                <?php echo esc_html__('UUID of the agent to embed (from the portal agent screen).', 'almanzor-cloud'); ?>
+                                <?php echo esc_html__('UUID used for API calls (ingest and connection test). Copy from the portal.', 'almanzor-cloud'); ?>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <label for="almanzor_cloud_agent_slug"><?php echo esc_html__('Agent slug', 'almanzor-cloud'); ?></label>
+                        </th>
+                        <td>
+                            <input
+                                name="<?php echo esc_attr(self::OPTION_KEY); ?>[agent_slug]"
+                                id="almanzor_cloud_agent_slug"
+                                type="text"
+                                class="regular-text"
+                                value="<?php echo esc_attr($settings['agent_slug']); ?>"
+                                required
+                            />
+                            <p class="description">
+                                <?php echo esc_html__('Public slug for embed.js (data-agent-id). Find it under Share in the portal.', 'almanzor-cloud'); ?>
                             </p>
                         </td>
                     </tr>

@@ -4,7 +4,7 @@ Tags: chatbot, ai, customer support, live chat, almanzor
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,14 +28,14 @@ Connect your Almanzor Cloud account with an API key, add your agent ID, and load
 1. In your WordPress admin, go to **Plugins → Add New**
 2. Search for **Almanzor Cloud**
 3. Install and activate
-4. Open **Settings → Almanzor Cloud** and add your API key and agent ID
+4. Open **Settings → Almanzor Cloud** and add your API key, agent ID (UUID), and agent slug
 
 **Manual install**
 
 1. Download the release ZIP from [GitHub Releases](https://github.com/Almanzor-Cloud/almanzor-wordpress/releases) (folder inside must be `almanzor-cloud`)
 2. Upload via **Plugins → Add New → Upload Plugin**, or extract to `wp-content/plugins/almanzor-cloud/`
 3. Activate **Almanzor Cloud**
-4. Open **Settings → Almanzor Cloud** and add your API key and agent ID
+4. Open **Settings → Almanzor Cloud** and add your API key, agent ID (UUID), and agent slug
 
 == Frequently Asked Questions ==
 
@@ -43,9 +43,9 @@ Connect your Almanzor Cloud account with an API key, add your agent ID, and load
 
 In the Almanzor portal under **Settings → API**.
 
-= Where do I find my agent ID? =
+= Where do I find my agent ID and slug? =
 
-In the Almanzor portal, open your agent and copy its ID (UUID). You can also copy it from the **Share** section in the portal.
+In the Almanzor portal, open your agent → **Share**. Copy the **Agent ID (UUID)** for API calls and the **slug** for the front-end widget (`data-agent-id`).
 
 = Does the plugin send data outside my server? =
 
@@ -75,6 +75,9 @@ No telemetry or analytics are sent by this plugin beyond the above actions initi
 For Almanzor Cloud’s data practices, see [almanzor.cloud/privacy](https://almanzor.cloud/privacy).
 
 == Changelog ==
+
+= 1.0.1 =
+* Fix embed snippet (`data-agent-id` and agent slug). Add agent slug setting.
 
 = 1.0.0 =
 * Initial release: settings screen, widget embed, site ingest, and connection test.

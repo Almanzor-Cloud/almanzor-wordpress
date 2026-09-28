@@ -89,10 +89,18 @@ final class Almanzor_Cloud_Connection {
         $body = json_decode($raw_body, true);
 
         if ($code === 200 && is_array($body)) {
+            $slug_hint = '';
+            if (isset($body['agent']['slug']) && is_scalar($body['agent']['slug'])) {
+                $slug_hint = ' ' . sprintf(
+                    /* translators: %s: agent slug */
+                    __('Embed slug: %s', 'almanzor-cloud'),
+                    sanitize_text_field((string) $body['agent']['slug'])
+                );
+            }
             add_settings_error(
                 'almanzor_cloud',
                 'test_ok',
-                esc_html__('Connection successful. Agent found on the portal.', 'almanzor-cloud'),
+                esc_html__('Connection successful. Agent found on the portal.', 'almanzor-cloud') . $slug_hint,
                 'updated'
             );
             return;
