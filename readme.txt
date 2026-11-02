@@ -88,8 +88,3 @@ This plugin stores your API key, agent ID and agent slug in the WordPress databa
 
 = 1.0.0 =
 * Initial release: settings screen, widget embed, site ingest, and connection test.
-
-== Upgrade Notice ==
-
-= 1.1.0 =
-Renamed to Almanzor. Your settings are kept.
