@@ -14,7 +14,7 @@ final class Almanzor_Cloud_Settings {
     public const SETTINGS_GROUP = 'almanzor_cloud_settings_group';
     public const MENU_SLUG = 'almanzor-cloud';
 
-    private const PORTAL_URL = 'https://portal.almanzor.cloud';
+    private const PORTAL_URL = 'https://almanzor.cloud';
     private const DOCS_URL = 'https://almanzor.cloud/wordpress';
     private const DEFAULT_WIDGET_URL = 'https://widget.almanzor.cloud';
 
@@ -37,7 +37,14 @@ final class Almanzor_Cloud_Settings {
             return $defaults;
         }
 
-        return array_merge($defaults, $stored);
+        $settings = array_merge($defaults, $stored);
+
+        // portal.almanzor.cloud no longer exists; saved settings may still point there.
+        if (wp_parse_url($settings['portal_api_url'], PHP_URL_HOST) === 'portal.almanzor.cloud') {
+            $settings['portal_api_url'] = self::PORTAL_URL;
+        }
+
+        return $settings;
     }
 
     public static function register_menu(): void {

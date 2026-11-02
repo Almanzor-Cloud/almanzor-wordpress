@@ -4,7 +4,7 @@ Tags: chatbot, ai, customer support, live chat, almanzor
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,7 +19,7 @@ Connect your Almanzor Cloud account with an API key, add your agent ID, and load
 * Ingests `home_url()` via the portal API when you choose **Ingest site content**
 * Connection test against the portal API
 
-[Almanzor Cloud](https://almanzor.cloud) · [WordPress setup guide](https://almanzor.cloud/wordpress) · [Portal](https://portal.almanzor.cloud) · [GitHub](https://github.com/Almanzor-Cloud/almanzor-wordpress)
+[Almanzor Cloud](https://almanzor.cloud) · [WordPress setup guide](https://almanzor.cloud/wordpress) · [Portal](https://almanzor.cloud/portal) · [GitHub](https://github.com/Almanzor-Cloud/almanzor-wordpress)
 
 == Installation ==
 
@@ -75,6 +75,10 @@ No telemetry or analytics are sent by this plugin beyond the above actions initi
 For Almanzor Cloud’s data practices, see [almanzor.cloud/privacy](https://almanzor.cloud/privacy).
 
 == Changelog ==
+
+= 1.0.2 =
+* Fix the widget not loading: the script address had `embed.js` twice.
+* Fix the portal address: connection test, content sync and portal links now use almanzor.cloud. Saved settings update automatically.
 
 = 1.0.1 =
 * Fix embed snippet (`data-agent-id` and agent slug). Add agent slug setting.

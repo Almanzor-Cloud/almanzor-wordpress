@@ -39,7 +39,7 @@ final class Almanzor_Cloud_Connection {
         $settings = Almanzor_Cloud_Settings::get_settings();
         $api_key = trim($settings['api_key'] ?? '');
         $agent_id = trim($settings['agent_id'] ?? '');
-        $portal = rtrim($settings['portal_api_url'] ?? 'https://portal.almanzor.cloud', '/');
+        $portal = rtrim($settings['portal_api_url'] ?? 'https://almanzor.cloud', '/');
 
         if ($api_key === '' || $agent_id === '') {
             add_settings_error(
