@@ -1,49 +1,35 @@
-# WordPress.org submission checklist
+# Publishing on WordPress.org
 
-Manual steps to list **Almanzor Cloud** in the official plugin directory. Cursor cannot submit on your behalf.
-
-## Before you submit
-
-1. **WordPress.org account** — Register at [wordpress.org](https://wordpress.org). The `Contributors:` field in `readme.txt` must match your username (currently `almanzorcloud`). Create that account or update `readme.txt`.
-2. **Plugin Check** — Install [Plugin Check](https://wordpress.org/plugins/plugin-check/) on a test site and run it against this plugin.
-3. **Test site** — WordPress 6.x, PHP 8.0+, activate plugin, save settings, run **Test connection**, confirm widget on front end, run **Ingest site content**.
-4. **ZIP layout** — Build with `./scripts/build-zip.sh`. The archive must contain a single top-level folder `almanzor-cloud/` (not `almanzor-wordpress-main/`).
+Only the account owner can do steps 1, 3 and 4.
 
 ## Submit
 
-1. Go to [Add your plugin](https://wordpress.org/plugins/developers/add/).
-2. Upload `dist/almanzor-cloud.zip`.
-3. Wait for email review (often several days to weeks). Respond to any feedback from the plugins team.
+1. **Account:** create `almanzorcloud` on [wordpress.org](https://login.wordpress.org/register). `Contributors:` in `readme.txt` must match it.
+2. **ZIP:** run `./scripts/build-zip.sh`. It must contain a single top-level folder, `almanzor/`.
+3. **Plugin Check:** on a test site, install [Plugin Check](https://wordpress.org/plugins/plugin-check/) and run it on the plugin. Fix any errors.
+4. **Upload:** send `dist/almanzor.zip` at [Add your plugin](https://wordpress.org/plugins/developers/add/). The form shows the slug it will get (`almanzor`), and it can't be changed after approval. If you need a different one, ask the review team in your reply, before approval.
+5. **Review:** answer the plugins team's emails.
 
 ## After approval
 
-WordPress.org provides an **SVN** repository:
+WordPress.org gives you an SVN repository:
 
 ```text
-assets/          → banner and icon (from .wordpress-org/ in this GitHub repo)
-trunk/           → current development copy of the plugin files
-tags/1.0.0/      → frozen copy for each release
+assets/      → banners, icon and screenshots, from .wordpress-org/
+trunk/       → the plugin files, from the ZIP
+tags/1.1.0/  → frozen copy of each release
 ```
 
-1. Copy plugin files to `trunk/`.
-2. Copy `.wordpress-org/*` to SVN `assets/`.
-3. Copy `trunk/` to `tags/1.0.0/` for version 1.0.0.
-4. Set `Stable tag: 1.0.0` in `readme.txt` on trunk (already set).
+Copy the files, then `svn add` and `svn commit`. `Stable tag:` in `readme.txt` must match the tag.
 
-## Update marketing links
+## Then update the links
 
-When the plugin is live, replace GitHub-only install links with:
+Replace the GitHub download with `https://wordpress.org/plugins/almanzor/` in:
 
-`https://wordpress.org/plugins/almanzor-cloud/`
-
-(if WordPress assigns a different slug, use the URL they give you)
-
-Update:
-
-- [almanzor.cloud/wordpress](https://almanzor.cloud/wordpress)
-- Portal **Share → WordPress** block
-- This repo’s README
+- `lib/marketing/pages-copy.ts` in almanzor-portal (the page at /integrations/wordpress)
+- `components/portal/agents/channels/wordpress-plugin-steps.tsx` in almanzor-portal
+- This repo's README
 
 ## Releases on GitHub
 
-Keep tagging (`v1.0.0`, `v1.0.1`, …) and attaching `dist/almanzor-cloud.zip` for users who install from GitHub before or instead of WordPress.org.
+Keep tagging (`v1.1.0`, …) and attaching the ZIP for anyone who installs from there.

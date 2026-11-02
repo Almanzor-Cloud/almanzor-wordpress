@@ -1,15 +1,15 @@
 <?php
 /**
- * Portal ingest action from admin.
+ * Imports the site's pages into the assistant, from the admin.
  *
- * @package Almanzor_Cloud
+ * @package Almanzor
  */
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
-final class Almanzor_Cloud_Ingest {
+final class Almanzor_Ingest {
     public static function init(): void {
         add_action('admin_init', [self::class, 'maybe_run_ingest']);
     }
@@ -20,32 +20,32 @@ final class Almanzor_Cloud_Ingest {
         }
 
         if (
-            !isset($_POST['almanzor_cloud_action'])
-            || sanitize_text_field(wp_unslash($_POST['almanzor_cloud_action'])) !== 'ingest_site'
+            !isset($_POST['almanzor_action'])
+            || sanitize_text_field(wp_unslash($_POST['almanzor_action'])) !== 'ingest_site'
         ) {
             return;
         }
 
         if (
-            !isset($_POST['almanzor_cloud_ingest_nonce'])
+            !isset($_POST['almanzor_ingest_nonce'])
             || !wp_verify_nonce(
-                sanitize_text_field(wp_unslash($_POST['almanzor_cloud_ingest_nonce'])),
-                'almanzor_cloud_ingest'
+                sanitize_text_field(wp_unslash($_POST['almanzor_ingest_nonce'])),
+                'almanzor_ingest'
             )
         ) {
             return;
         }
 
-        $settings = Almanzor_Cloud_Settings::get_settings();
+        $settings = Almanzor_Settings::get_settings();
         $api_key = trim($settings['api_key'] ?? '');
         $agent_id = trim($settings['agent_id'] ?? '');
         $portal = rtrim($settings['portal_api_url'] ?? 'https://almanzor.cloud', '/');
 
         if ($api_key === '' || $agent_id === '') {
             add_settings_error(
-                'almanzor_cloud',
+                'almanzor',
                 'missing_config',
-                esc_html__('Configure API key and agent ID first.', 'almanzor-cloud'),
+                esc_html__('Configure API key and agent ID first.', 'almanzor'),
                 'error'
             );
             return;
@@ -57,7 +57,7 @@ final class Almanzor_Cloud_Ingest {
         $response = wp_remote_post(
             $endpoint,
             [
-                'timeout' => 60,
+                'timeout' => 90,
                 'headers' => [
                     'Authorization' => 'Bearer ' . $api_key,
                     'Content-Type' => 'application/json',
@@ -68,7 +68,7 @@ final class Almanzor_Cloud_Ingest {
 
         if (is_wp_error($response)) {
             add_settings_error(
-                'almanzor_cloud',
+                'almanzor',
                 'ingest_failed',
                 esc_html($response->get_error_message()),
                 'error'
@@ -81,18 +81,18 @@ final class Almanzor_Cloud_Ingest {
         $body = json_decode($raw_body, true);
 
         if ($code < 200 || $code >= 300) {
-            $message = esc_html__('Ingest failed.', 'almanzor-cloud');
+            $message = esc_html__('Import failed.', 'almanzor');
             if (is_array($body) && isset($body['error']) && is_scalar($body['error'])) {
                 $message = sanitize_text_field((string) $body['error']);
             }
-            add_settings_error('almanzor_cloud', 'ingest_failed', $message, 'error');
+            add_settings_error('almanzor', 'ingest_failed', $message, 'error');
             return;
         }
 
         add_settings_error(
-            'almanzor_cloud',
+            'almanzor',
             'ingest_ok',
-            esc_html__('Site content ingested successfully.', 'almanzor-cloud'),
+            esc_html__('Site content imported.', 'almanzor'),
             'updated'
         );
     }
