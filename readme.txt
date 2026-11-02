@@ -1,80 +1,83 @@
-=== Almanzor Cloud ===
+=== Almanzor ===
 Contributors: almanzorcloud
-Tags: chatbot, ai, customer support, live chat, almanzor
-Requires at least: 6.0
-Tested up to: 6.7
+Tags: chatbot, ai, ai assistant, customer support, chat
+Requires at least: 6.3
+Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 1.0.2
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Official WordPress plugin for Almanzor Cloud — embed your AI assistant and sync public site content.
+Add an AI assistant to your site that answers from your own content, cites the page and says when it doesn't know.
 
 == Description ==
 
-Connect your Almanzor Cloud account with an API key, add your agent ID, and load the official `embed.js` launcher on your site. Optionally ingest your public site URL into the agent knowledge base from **Settings → Almanzor Cloud**.
+Almanzor is an AI assistant that answers your visitors from your own content: your website, your docs and your files. Each answer cites the page it came from. When the answer isn't in your content, it says so, and you see that question in your portal so you know what to write next.
 
-* Embeds the Almanzor widget on the front end
-* Stores credentials in WordPress options (not in theme files)
-* Ingests `home_url()` via the portal API when you choose **Ingest site content**
-* Connection test against the portal API
+This plugin connects your WordPress site to your Almanzor account:
 
-[Almanzor Cloud](https://almanzor.cloud) · [WordPress setup guide](https://almanzor.cloud/wordpress) · [Portal](https://almanzor.cloud/portal) · [GitHub](https://github.com/Almanzor-Cloud/almanzor-wordpress)
+* Shows the chat widget on your public pages
+* Imports your site's pages into your assistant from the WordPress admin
+* Tests the connection to your account
+
+You need an Almanzor account. New accounts get a 14-day trial with no card, then a paid plan. See [pricing](https://almanzor.cloud/pricing).
+
+== External services ==
+
+This plugin relies on Almanzor, a third-party service run by Almanzor Cloud OÜ, to provide the assistant.
+
+* **Widget:** once you've saved an agent slug, every public page loads `embed.js` from `widget.almanzor.cloud` (or the Widget URL you set). Visitors' browsers connect to that service, and what they type in the chat is sent to it.
+* **Connection test:** when an administrator clicks **Test connection**, your API key and agent ID are sent to `almanzor.cloud`.
+* **Content import:** when an administrator clicks **Import site content**, your API key, agent ID and your site's public address are sent to `almanzor.cloud`, which then reads your public pages.
+
+Nothing is sent to `almanzor.cloud` from the admin until an administrator clicks one of those buttons.
+
+Service terms: [Terms of use](https://almanzor.cloud/terms) · [Privacy policy](https://almanzor.cloud/privacy)
 
 == Installation ==
 
-**From WordPress.org (when available)**
+1. In your WordPress admin, go to **Plugins → Add New**, search for **Almanzor**, install and activate it
+2. Go to **Settings → Almanzor**
+3. In the [Almanzor portal](https://almanzor.cloud/portal), open your assistant and go to **Channels → Widget → WordPress**
+4. Copy the agent slug into the plugin and save. The widget now shows on your site
+5. Add your site's domain to the assistant's authorized domains in the portal, if it isn't there yet
 
-1. In your WordPress admin, go to **Plugins → Add New**
-2. Search for **Almanzor Cloud**
-3. Install and activate
-4. Open **Settings → Almanzor Cloud** and add your API key, agent ID (UUID), and agent slug
-
-**Manual install**
-
-1. Download the release ZIP from [GitHub Releases](https://github.com/Almanzor-Cloud/almanzor-wordpress/releases) (folder inside must be `almanzor-cloud`)
-2. Upload via **Plugins → Add New → Upload Plugin**, or extract to `wp-content/plugins/almanzor-cloud/`
-3. Activate **Almanzor Cloud**
-4. Open **Settings → Almanzor Cloud** and add your API key, agent ID (UUID), and agent slug
+To test the connection and import your site from WordPress, also add an API key (**Settings → API keys** in the portal) and the agent ID.
 
 == Frequently Asked Questions ==
 
-= Where do I get an API key? =
+= Do I need an Almanzor account? =
 
-In the Almanzor portal under **Settings → API**.
+Yes. The plugin connects your site to your account, where you create the assistant and choose what it knows.
 
-= Where do I find my agent ID and slug? =
+= Which values does the widget need? =
 
-In the Almanzor portal, open your agent → **Share**. Copy the **Agent ID (UUID)** for API calls and the **slug** for the front-end widget (`data-agent-id`).
+Only the agent slug. The API key and agent ID are for the connection test and content import.
 
-= Does the plugin send data outside my server? =
+= Is my content used to train AI models? =
 
-Yes. The front end loads `embed.js` from the configured widget host (default `widget.almanzor.cloud`). Ingest and connection test call the Almanzor portal API with your API key. See **Privacy** below.
+No. Your content and conversations are used only to run your assistants and provide the service. See the [privacy policy](https://almanzor.cloud/privacy).
 
 = Does deactivating the plugin remove my settings? =
 
-No. Settings are removed only when you **delete** (uninstall) the plugin.
+No. Settings are removed only when you delete the plugin.
 
 == Screenshots ==
 
-1. Settings screen with API key, agent ID, connection test, and ingest
-2. Almanzor chat widget on a public page (after configuration)
+1. The plugin's settings screen in the WordPress admin
+2. The Almanzor widget on a WordPress site
 
 == Privacy ==
 
-This plugin stores your Almanzor API key and agent ID in the WordPress database (`wp_options`, option name `almanzor_cloud_settings`). Only site administrators with `manage_options` can view or change these values.
-
-When configured, the plugin:
-
-* Loads JavaScript from your **Widget URL** (default `https://widget.almanzor.cloud/embed.js`) on public pages so visitors can use the chat widget. Visitor messages are handled by Almanzor Cloud according to your portal settings and privacy policy.
-* May send your site’s public URL (`home_url()`) to the portal when an administrator runs **Ingest site content**.
-* May call `GET /api/v1/agents/{id}` when an administrator runs **Test connection**.
-
-No telemetry or analytics are sent by this plugin beyond the above actions initiated from the WordPress admin or the embedded widget.
-
-For Almanzor Cloud’s data practices, see [almanzor.cloud/privacy](https://almanzor.cloud/privacy).
+This plugin stores your API key, agent ID and agent slug in the WordPress database (option `almanzor_cloud_settings`), visible to administrators. It adds no analytics of its own. See **External services** for what is sent and when.
 
 == Changelog ==
+
+= 1.1.0 =
+* Renamed to Almanzor.
+* The widget only needs the agent slug.
+* The widget script now loads through the WordPress script system. Requires WordPress 6.3.
+* Fix notices showing twice in the settings screen.
 
 = 1.0.2 =
 * Fix the widget not loading: the script address had `embed.js` twice.
@@ -85,3 +88,8 @@ For Almanzor Cloud’s data practices, see [almanzor.cloud/privacy](https://alma
 
 = 1.0.0 =
 * Initial release: settings screen, widget embed, site ingest, and connection test.
+
+== Upgrade Notice ==
+
+= 1.1.0 =
+Renamed to Almanzor. Your settings are kept.
