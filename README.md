@@ -1,6 +1,6 @@
 # Almanzor Cloud for WordPress
 
-Official WordPress plugin for [Almanzor Cloud](https://almanzor.cloud). Embed your AI assistant on your site and optionally sync public page content to your agent via the [portal API](https://portal.almanzor.cloud).
+Official WordPress plugin for [Almanzor Cloud](https://almanzor.cloud). Embed your AI assistant on your site and optionally sync public page content to your agent via the [portal API](https://almanzor.cloud/portal).
 
 **Setup guide (marketing):** [almanzor.cloud/wordpress](https://almanzor.cloud/wordpress)
 
@@ -11,7 +11,7 @@ This repository (`almanzor-wordpress`) is the **WordPress integration**. It is n
 | [almanzor-landing](https://github.com/Almanzor-Cloud/almanzor-landing) | Marketing site |
 | [almanzor-cli](https://github.com/Almanzor-Cloud/almanzor-cli) | CLI tooling |
 | **almanzor-wordpress** (this repo) | WordPress plugin |
-| Portal / widget | Hosted at `portal.almanzor.cloud` and `widget.almanzor.cloud` |
+| Portal / widget | Hosted at `almanzor.cloud` and `widget.almanzor.cloud` |
 
 ## What it does
 
@@ -24,7 +24,7 @@ This repository (`almanzor-wordpress`) is the **WordPress integration**. It is n
 WordPress site
     → plugin (this repo)
         → widget.almanzor.cloud (embed.js)
-        → portal.almanzor.cloud (REST API)
+        → almanzor.cloud (REST API)
 ```
 
 ## Requirements
@@ -52,7 +52,7 @@ When approved, install from the plugin directory: search **Almanzor Cloud**. See
 
 ## Configuration
 
-1. In the [portal](https://portal.almanzor.cloud), create an API key (**Settings → API**) and note your agent UUID.
+1. In the [portal](https://almanzor.cloud/portal), create an API key (**Settings → API**) and note your agent UUID.
 2. In WordPress, go to **Settings → Almanzor Cloud**.
 3. Save API key and agent ID, then **Test connection**.
 4. Optionally use **Ingest site content** to send your public site URL to the agent.
