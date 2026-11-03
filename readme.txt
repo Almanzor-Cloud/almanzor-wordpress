@@ -4,7 +4,7 @@ Tags: chatbot, ai, ai assistant, customer support, chat
 Requires at least: 6.3
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -69,22 +69,9 @@ No. Settings are removed only when you delete the plugin.
 
 == Privacy ==
 
-This plugin stores your API key, agent ID and agent slug in the WordPress database (option `almanzor_cloud_settings`), visible to administrators. It adds no analytics of its own. See **External services** for what is sent and when.
+This plugin stores your API key, agent ID and agent slug in the WordPress database (option `almanzor_settings`), visible to administrators. It adds no analytics of its own. See **External services** for what is sent and when.
 
 == Changelog ==
 
-= 1.1.0 =
-* Renamed to Almanzor.
-* The widget only needs the agent slug.
-* The widget script now loads through the WordPress script system. Requires WordPress 6.3.
-* Fix notices showing twice in the settings screen.
-
-= 1.0.2 =
-* Fix the widget not loading: the script address had `embed.js` twice.
-* Fix the portal address: connection test, content sync and portal links now use almanzor.cloud. Saved settings update automatically.
-
-= 1.0.1 =
-* Fix embed snippet (`data-agent-id` and agent slug). Add agent slug setting.
-
-= 1.0.0 =
-* Initial release: settings screen, widget embed, site ingest, and connection test.
+= 1.1.1 =
+* First release in the WordPress.org directory.

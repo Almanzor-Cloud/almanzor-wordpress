@@ -9,4 +9,4 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
     exit;
 }
 
-delete_option('almanzor_cloud_settings');
+delete_option('almanzor_settings');

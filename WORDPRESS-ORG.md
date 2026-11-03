@@ -17,7 +17,7 @@ WordPress.org gives you an SVN repository:
 ```text
 assets/      → banners, icon and screenshots, from .wordpress-org/
 trunk/       → the plugin files, from the ZIP
-tags/1.1.0/  → frozen copy of each release
+tags/1.1.1/  → frozen copy of each release
 ```
 
 Copy the files, then `svn add` and `svn commit`. `Stable tag:` in `readme.txt` must match the tag.
@@ -32,4 +32,4 @@ Replace the GitHub download with `https://wordpress.org/plugins/almanzor/` in:
 
 ## Releases on GitHub
 
-Keep tagging (`v1.1.0`, …) and attaching the ZIP for anyone who installs from there.
+Keep tagging (`v1.1.1`, …) and attaching the ZIP for anyone who installs from there.
