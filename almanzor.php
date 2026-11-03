@@ -3,7 +3,7 @@
  * Plugin Name: Almanzor
  * Plugin URI: https://almanzor.cloud/integrations/wordpress
  * Description: Add your Almanzor AI assistant to your site. It answers from your own content and cites the page.
- * Version: 1.1.0
+ * Version: 1.1.1
  * Requires at least: 6.3
  * Requires PHP: 8.0
  * Author: Almanzor Cloud OÜ
@@ -19,7 +19,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('ALMANZOR_VERSION', '1.1.0');
+define('ALMANZOR_VERSION', '1.1.1');
 define('ALMANZOR_PLUGIN_FILE', __FILE__);
 
 require_once __DIR__ . '/includes/class-almanzor-settings.php';

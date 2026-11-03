@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
 }
 
 final class Almanzor_Settings {
-    public const OPTION_KEY = 'almanzor_cloud_settings';
+    public const OPTION_KEY = 'almanzor_settings';
     public const SETTINGS_GROUP = 'almanzor_settings_group';
     public const MENU_SLUG = 'almanzor';
 
@@ -37,14 +37,7 @@ final class Almanzor_Settings {
             return $defaults;
         }
 
-        $settings = array_merge($defaults, $stored);
-
-        // portal.almanzor.cloud no longer exists; saved settings may still point there.
-        if (wp_parse_url($settings['portal_api_url'], PHP_URL_HOST) === 'portal.almanzor.cloud') {
-            $settings['portal_api_url'] = self::PORTAL_URL;
-        }
-
-        return $settings;
+        return array_merge($defaults, $stored);
     }
 
     public static function register_menu(): void {

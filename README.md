@@ -27,15 +27,13 @@ WordPress site
 
 Until the WordPress.org listing is live, download the ZIP from [Releases](https://github.com/Almanzor-Cloud/almanzor-wordpress/releases), then **Plugins → Add New → Upload Plugin**.
 
-Coming from `almanzor-cloud` (1.0.x)? Delete the old plugin first, since both would load the widget. Deleting it erases its saved settings, so copy your values and enter them again in the new one.
-
 ## Configuration
 
 1. In the [portal](https://almanzor.cloud/portal), open your assistant → **Channels → Widget → WordPress** and copy the slug.
 2. In WordPress, go to **Settings → Almanzor** and save it. The widget now shows on your site.
 3. For **Test connection** and **Import site content**, also add an API key (**Settings → API keys** in the portal) and the agent ID.
 
-Settings are stored in the WordPress options table (`almanzor_cloud_settings`).
+Settings are stored in the WordPress options table (`almanzor_settings`).
 
 ## Build release ZIP
 
